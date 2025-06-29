@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LoadingSpinner, PulseLoader, Skeleton } from "./components";
+import { LoadingEpPiTi, LoadingSpinner, PulseLoader, Skeleton } from "./components";
 import "./App.css";
 
 function App() {
@@ -7,6 +7,17 @@ function App() {
   const [spinnerColor, setSpinnerColor] = useState("#3b82f6");
   const [pulseCount, setPulseCount] = useState(3);
   const [showSkeletons, setShowSkeletons] = useState(true);
+
+  // LoadingEpPiTi controls
+  const [eppitiSize, setEppitiSize] = useState(1.2);
+  const [eppitiColors, setEppitiColors] = useState<[string, string, string]>(["#ff6b6b", "#4ecdc4", "#45b7d1"]);
+  const [eppitiSpeed, setEppitiSpeed] = useState(0.3);
+
+  const updateEppitiColor = (index: 0 | 1 | 2, color: string) => {
+    const newColors: [string, string, string] = [...eppitiColors];
+    newColors[index] = color;
+    setEppitiColors(newColors);
+  };
 
   return (
     <div className="App">
@@ -107,6 +118,68 @@ function App() {
           </div>
         </section>
 
+        {/* LoadingEpPiTi Demo */}
+        <section className="demo-section">
+          <h2>3D Rotating Loader</h2>
+          <div className="demo-component">
+            <LoadingEpPiTi
+              size={eppitiSize}
+              colors={eppitiColors}
+              showText={true}
+              text="Loading Data..."
+              speed={eppitiSpeed}
+            />
+          </div>
+          <div className="controls">
+            <label>
+              Size: {eppitiSize.toFixed(1)}x
+              <input
+                type="range"
+                min="0.5"
+                max="2.5"
+                step="0.1"
+                value={eppitiSize}
+                onChange={(e) => setEppitiSize(Number(e.target.value))}
+              />
+            </label>
+            <label>
+              Element 1 Color:
+              <input
+                type="color"
+                value={eppitiColors[0]}
+                onChange={(e) => updateEppitiColor(0, e.target.value)}
+              />
+            </label>
+            <label>
+              Element 2 Color:
+              <input
+                type="color"
+                value={eppitiColors[1]}
+                onChange={(e) => updateEppitiColor(1, e.target.value)}
+              />
+            </label>
+            <label>
+              Element 3 Color:
+              <input
+                type="color"
+                value={eppitiColors[2]}
+                onChange={(e) => updateEppitiColor(2, e.target.value)}
+              />
+            </label>
+            <label>
+              Speed: {(1 / eppitiSpeed).toFixed(1)} spins/s
+              <input
+                type="range"
+                min="0.1"
+                max="2.5"
+                step="0.1"
+                value={eppitiSpeed}
+                onChange={(e) => setEppitiSpeed(Number(e.target.value))}
+              />
+            </label>
+          </div>
+        </section>
+
         {/* Installation Instructions */}
         <section className="demo-section">
           <h2>Installation</h2>
@@ -126,7 +199,7 @@ function App() {
           <div className="code-examples">
             <h3>Basic Usage</h3>
             <pre>
-              <code>{`import { LoadingSpinner, PulseLoader, Skeleton } from 'react-loading-components';
+              <code>{`import { LoadingSpinner, PulseLoader, Skeleton, LoadingEpPiTi } from 'react-loading-components';
 
 // Loading Spinner
 <LoadingSpinner size={50} color="#ff6b6b" />
@@ -135,7 +208,15 @@ function App() {
 <PulseLoader count={5} color="#10b981" />
 
 // Skeleton
-<Skeleton width="100%" height={24} />`}</code>
+<Skeleton width="100%" height={24} />
+
+// 3D Rotating Loader
+<LoadingEpPiTi 
+  size={1.2} 
+  colors={["#ff6b6b", "#4ecdc4", "#45b7d1"]} 
+  showText={true}
+  text="Loading Data..." 
+/>`}</code>
             </pre>
           </div>
         </section>

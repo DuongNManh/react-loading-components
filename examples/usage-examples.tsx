@@ -5,6 +5,7 @@ import {
   LoadingSpinner,
   PulseLoader,
   Skeleton,
+  LoadingEpPiTi,
 } from "react-loading-components";
 
 // Example 1: Simple Loading State
@@ -110,12 +111,48 @@ function CustomStyledExample() {
       {/* Green pulse loader */}
       <PulseLoader color="#2ed573" count={5} size={14} speed={1.2} />
 
+      {/* 3D rotating loader with custom colors and text */}
+      <LoadingEpPiTi
+        size={1.5}
+        colors={["#ff6b6b", "#4ecdc4", "#45b7d1"]}
+        speed={0.5}
+        showText={true}
+        text="Loading Data..."
+      />
+
       {/* Custom skeleton shapes */}
       <div style={{ marginTop: "20px" }}>
         <Skeleton width={200} height={200} borderRadius={12} />
         <Skeleton width="100%" height={8} borderRadius={4} />
         <Skeleton width="75%" height={8} borderRadius={4} />
       </div>
+    </div>
+  );
+}
+
+// Example 5: LoadingEpPiTi Variations
+function EpPiTiExample() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      {/* Default styling */}
+      <LoadingEpPiTi />
+
+      {/* Small with custom colors */}
+      <LoadingEpPiTi
+        size={0.8}
+        colors={["#e74c3c", "#f39c12", "#27ae60"]}
+        showText={true}
+        text="Processing..."
+      />
+
+      {/* Large with different speed */}
+      <LoadingEpPiTi
+        size={2}
+        colors={["#9b59b6", "#3498db", "#1abc9c"]}
+        speed={0.8}
+        showText={true}
+        text="Loading Application..."
+      />
     </div>
   );
 }
@@ -143,6 +180,11 @@ export default function App() {
       <section style={{ marginBottom: "40px" }}>
         <h2>Custom Styled</h2>
         <CustomStyledExample />
+      </section>
+
+      <section style={{ marginBottom: "40px" }}>
+        <h2>3D Rotating Loader</h2>
+        <EpPiTiExample />
       </section>
     </div>
   );

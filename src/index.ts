@@ -8,13 +8,14 @@
  */
 
 // Export all components
-export { LoadingSpinner, PulseLoader, Skeleton } from "./components";
+export { LoadingSpinner, PulseLoader, Skeleton, LoadingEpPiTi } from "./components";
 
 // Export all types
 export type {
   LoadingSpinnerProps,
   PulseLoaderProps,
   SkeletonProps,
+  LoadingEpPiTiProps,
 } from "./types";
 
 // Default export for convenience

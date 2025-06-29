@@ -120,3 +120,46 @@ export interface SkeletonProps {
    */
   speed?: number;
 }
+
+export interface LoadingEpPiTiProps {
+  /**
+   * Size multiplier for the component
+   * @default 1
+   */
+  size?: number;
+
+  /**
+   * Colors for the three items
+   * @default ["#1169B0", "#F27227", "#16B14B"]
+   */
+  colors?: [string, string, string];
+
+  /**
+   * Animation speed in seconds
+   * @default 0.3
+   */
+  speed?: number;
+
+  /**
+   * Additional CSS class name
+   */
+  className?: string;
+
+  /**
+   * ARIA label for accessibility
+   * @default "Loading..."
+   */
+  ariaLabel?: string;
+
+  /**
+   * Whether to show the loading text
+   * @default false
+   */
+  showText?: boolean;
+
+  /**
+   * Custom loading text
+   * @default "Loading..."
+   */
+  text?: string;
+}
